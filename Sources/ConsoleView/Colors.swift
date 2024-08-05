@@ -1,13 +1,3 @@
-//
-//  OSLogViewer.Colors.swift
-//  OSLogViewer
-//
-//  Created by Wesley de Groot on 01/06/2024.
-//  https://wesleydegroot.nl
-//
-//  https://github.com/0xWDG/OSLogViewer
-//  MIT LICENCE
-
 import SwiftUI
 import OSLog
 
@@ -19,10 +9,8 @@ import UIKit
 import AppKit
 #endif
 
-extension OSLogViewer {
-    /// Generate the background color for the log message
-    /// - Parameter level: log level
-    /// - Returns: The appropiate color
+extension ConsoleView {
+
     func getBackgroundColor(level: OSLogEntryLog.Level) -> Color {
         switch level {
         case .undefined, .debug, .info, .notice:
@@ -39,7 +27,7 @@ extension OSLogViewer {
         }
     }
 
-    /// Get the default background color
+
     func getBackgroundColorDefault() -> Color {
 #if canImport(UIKit) && !os(tvOS) && !os(watchOS)
             Color(uiColor: UIColor.secondarySystemGroupedBackground)
@@ -52,12 +40,11 @@ extension OSLogViewer {
                 }
             }))
 #else
-            // Fallback
             Color.clear
 #endif
     }
 
-    /// Get the error background color
+
     func getBackgroundColorError() -> Color {
 #if canImport(UIKit) && !os(watchOS)
             Color(uiColor: .init(dynamicProvider: { traits in
@@ -80,7 +67,7 @@ extension OSLogViewer {
 #endif
     }
 
-    /// Get the fault background color
+
     func getBackgroundColorFault() -> Color {
 #if canImport(UIKit) && !os(watchOS)
             Color(uiColor: .init(dynamicProvider: { traits in
