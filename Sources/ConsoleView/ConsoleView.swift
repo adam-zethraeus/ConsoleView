@@ -170,4 +170,4 @@ public struct ConsoleView: View {
         ConsoleView()
 }
 
-extension OSLogEntryLog: @unchecked @retroactive Sendable {}
+extension OSLogEntryLog: @unchecked Sendable {}
