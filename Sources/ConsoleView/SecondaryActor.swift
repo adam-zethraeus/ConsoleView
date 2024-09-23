@@ -5,4 +5,3 @@ public actor SecondaryActor: GlobalActor {
 
   public static let shared: SecondaryActor = .init()
 }
-
