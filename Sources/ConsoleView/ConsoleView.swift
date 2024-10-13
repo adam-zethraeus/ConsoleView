@@ -44,7 +44,9 @@ public struct ConsoleView: View {
             .padding(.top, 4)
             .fixedSize(horizontal: false, vertical: true)
             .frame(maxWidth: .infinity, alignment: .leading)
-          Spacer().frame(minHeight: 0)
+          Rectangle().fill(.clear)
+            .allowsHitTesting(true)
+            .frame(minWidth: 0, minHeight: 0)
           detailsBuilder(for: entry.value)
             .font(.custom("SFMono-Regular", size: 8))
             .frame(maxWidth: .infinity, alignment: .leading)
@@ -53,6 +55,9 @@ public struct ConsoleView: View {
         }
         .padding(.leading, 10)
         .padding(.trailing, 64)
+        .background {
+          rowBackground(log: entry.value, imageOpacity: highlight.contains(entry.id) ? 1 : 0.1)
+        }
         .simultaneousGesture(
           DragGesture(minimumDistance: 0, coordinateSpace: .global)
             .updating(
@@ -65,9 +70,6 @@ public struct ConsoleView: View {
               highlight.remove(entry.id)
             }
         )
-        .background {
-          rowBackground(log: entry.value, imageOpacity: highlight.contains(entry.id) ? 1 : 0.1)
-        }
       }
       .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
     }
